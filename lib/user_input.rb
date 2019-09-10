@@ -4,7 +4,6 @@ class UserInput
 
     def execute 
         value = gets.chomp.to_i
-        puts value
 
         if value < 10 && value > 0
             return value

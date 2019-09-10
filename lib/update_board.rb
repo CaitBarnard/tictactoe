@@ -19,5 +19,6 @@ class UpdateBoard
         else 
             return "This is an exception"
         end
+
     end
 end

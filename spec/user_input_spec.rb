@@ -9,7 +9,7 @@ describe UserInput do
 
     end
 
-   xit "rejects integers above 9" do
+   it "rejects integers above 9" do
         user = UserInput.new
         expect(user.execute).not_to eq(10)
     end

@@ -2,9 +2,10 @@ class CheckWinner
     
     def initialize(board)
         @board = board
+        @score = ""
     end
 
-    def execute
+    def execute()
         win_conditions = [
             [0,1,2],
             [3,4,5],
