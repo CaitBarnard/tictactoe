@@ -23,7 +23,7 @@ class Main
 
             # check if someone has won 
             check_winner = CheckWinner.new(board)
-            if check_winner empty
+            if check_winner.execute empty
                 someone_has_won = true
             end 
             
@@ -33,10 +33,10 @@ class Main
             board = board.execute(ai_input)
             # print board:
             print print_board.execute(board)
-            
+
             # check if someone has won
             check_winner = CheckWinner.new(board)
-            if check_winner empty
+            if check_winner.execute empty
                 someone_has_won = true
             end 
     end  
