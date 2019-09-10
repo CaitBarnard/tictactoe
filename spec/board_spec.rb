@@ -74,10 +74,34 @@ describe Board do
         player_input = 5
         game.update_board(player_input)
         expect(game.score).to eq("Player 1 wins")
-        # game.board = ['X',' ',' ','X','O','O','X',' ',' ']
-        # expect(game.score).to eq("player 1 wins")
-        # game.board = ['O','O','X',' ',' ','X',' ',' ','X']
-        # expect(game.score).to eq("player 1 wins")
-    end   
+    end  
+
+    it "player wins when they have marks in cells 1,4,7" do 
+        game = Board.new
+        game.board = [' ',' ',' ','X','O','O','X',' ',' ']
+        player_input = 1
+        game.update_board(player_input)
+        expect(game.score).to eq("Player 1 wins")
+    end
+
+    it "player wins when they have marks in cells 3,6,9" do 
+        game = Board.new
+        game.board = ['O','O',' ',' ',' ','X',' ',' ','X']
+        player_input = 3
+        game.update_board(player_input)
+        expect(game.score).to eq("Player 1 wins")
+    end
+
+    it "AI wins when they have marks in cells 1,4,7" do 
+        game = Board.new
+        game.board = [' ',' ','X','O',' ',' ','O',' ','X']
+        player_input = 2
+        game.update_board(player_input)
+        ai_input = 1
+        game.update_board(ai_input)
+        expect(game.score).to eq("Player 1 loses")
+    end
+
+   
 
 end
