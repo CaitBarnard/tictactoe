@@ -1,42 +1,83 @@
 require "board"
 
 describe Board do
-    class Gateway
-        attr_accessor :position_on_board
-        def initialize(position_on_board)
-            @position_on_board = position_on_board
-        end
-
-        def get_player_position
-            @position_on_board -1
-        end
-
-    end
 
     it "initialises empty board" do
-        ai_gateway = Gateway.new(1)
-        game = Board.new(ai_gateway)
-        expect(game.board).to eq(['','','','','','','','',''])
+        game = Board.new
+        expect(game.board).to eq([' ',' ',' ',' ',' ',' ',' ',' ',' '])
     end
 
     it "Player makes moves in cell 1" do
-        ai_gateway = Gateway.new(1)
-        player_input = gets.chomp.to_i
-        game = Board.new(ai_gateway)
-        expect(game.execute(player_input)).to eq(['X','','','','','','','',''])
+        game = Board.new
+        player_input = 1
+        game.update_board(player_input)
+        expect(game.board).to eq(['X',' ',' ',' ',' ',' ',' ',' ',' '])
     end
 
     it "Player makes move in cell 2" do
-        ai_gateway = Gateway.new(2)
-        player_input = gets.chomp.to_i
-        game = Board.new(ai_gateway)
-        expect(game.execute(player_input)).to eq(['','X','','','','','','',''])
+        game = Board.new
+        player_input = 2
+        game.update_board(player_input)
+        expect(game.board).to eq([' ','X',' ',' ',' ',' ',' ',' ',' '])
     end
 
-    xit "AI makes a move in cell 3" do
-        ai_gateway = Gateway.new(1)
+    it "Player moves in cell 2, AI in cell 1" do
         game = Board.new
-        expect(game.execute({})).to eq(['O','X','','','','','','',''])
+        player_input = 2
+        ai_input = 1
+        game.update_board(player_input)
+        game.update_board(ai_input)
+        expect(game.board).to eq(['O','X',' ',' ',' ',' ',' ',' ',' '])
     end
+
+    it "Test Player cannot mark a marked cell" do
+        game = Board.new
+        player_input = 3
+        game.update_board(player_input)
+        ai_input = 1
+        game.update_board(ai_input)
+        player_input = 1
+        game.update_board(player_input)
+        expect(game.update_board(player_input)).to eq("This is an exception")
+    end
+
+    it "Prints empty board out" do 
+        game = Board.new 
+        expect(game.print_board).to eq(" | | \n | | \n | | ")
+    end
+
+
+    it "Prints board with marks " do 
+        game = Board.new
+        game.board = ['X',' ',' ',' ',' ',' ',' ',' ',' ']
+        expect(game.print_board).to eq("X| | \n | | \n | | ")
+    end
+
+    it "Player one wins" do 
+        game = Board.new
+        player_input = 5
+        game.update_board(player_input)
+        ai_input = 2
+        game.update_board(ai_input)
+        player_input = 1
+        game.update_board(player_input)
+        ai_input = 3
+        game.update_board(ai_input)
+        player_input = 9
+        game.update_board(player_input)
+        expect(game.score).to eq("Player 1 wins")
+    end
+
+    it "player wins when they have marks in cells 2,5,8" do 
+        game = Board.new
+        game.board = ['O','X','O',' ',' ',' ',' ','X','O']
+        player_input = 5
+        game.update_board(player_input)
+        expect(game.score).to eq("Player 1 wins")
+        # game.board = ['X',' ',' ','X','O','O','X',' ',' ']
+        # expect(game.score).to eq("player 1 wins")
+        # game.board = ['O','O','X',' ',' ','X',' ',' ','X']
+        # expect(game.score).to eq("player 1 wins")
+    end   
 
 end
