@@ -2,34 +2,56 @@ require "update_board"
 
 describe UpdateBoard do
 
+    class Gateway
+        def initialize(board)
+            @board = board
+        end
+
+        def save
+            @last_saved_board = @board
+        end
+
+        def get_board
+            @last_saved_board
+        end
+    end
+
     it "Player makes moves in cell 1" do
-        board = UpdateBoard.new([' ',' ',' ',' ',' ',' ',' ',' ',' '])
+        board = [' ',' ',' ',' ',' ',' ',' ',' ',' ']
+        gateway = Gateway.new(board)
+        update_board = UpdateBoard.new(gateway)
         player_input = 1
-        expect(board.execute(player_input)).to eq(['X',' ',' ',' ',' ',' ',' ',' ',' '])
+        expect(update_board.execute(player_input)).to eq(['X',' ',' ',' ',' ',' ',' ',' ',' '])
     end
 
     it "Player makes move in cell 2" do
-        board = UpdateBoard.new([' ',' ',' ',' ',' ',' ',' ',' ',' '])
+        board = [' ',' ',' ',' ',' ',' ',' ',' ',' ']
+        gateway = Gateway.new(board)
+        update_board = UpdateBoard.new(gateway)
         player_input = 2
-        expect(board.execute(player_input)).to eq([' ','X',' ',' ',' ',' ',' ',' ',' '])
+        expect(update_board.execute(player_input)).to eq([' ','X',' ',' ',' ',' ',' ',' ',' '])
     end
 
     it "Player moves in cell 2, AI in cell 1" do
-        board = UpdateBoard.new([' ',' ',' ',' ',' ',' ',' ',' ',' '])
+        board = [' ',' ',' ',' ',' ',' ',' ',' ',' ']
+        gateway = Gateway.new(board)
+        update_board = UpdateBoard.new(gateway)
         player_input = 2
-        board.execute(player_input)
+        update_board.execute(player_input)
         ai_input = 1
-        expect(board.execute(ai_input)).to eq(['O','X',' ',' ',' ',' ',' ',' ',' '])
+        expect(update_board.execute(ai_input)).to eq(['O','X',' ',' ',' ',' ',' ',' ',' '])
     end
 
     it "Test Player cannot mark a marked cell" do
-        board = UpdateBoard.new([' ',' ',' ',' ',' ',' ',' ',' ',' '])
+        board = [' ',' ',' ',' ',' ',' ',' ',' ',' ']
+        gateway = Gateway.new(board)
+        update_board = UpdateBoard.new(gateway)
         player_input = 3
-        board.execute(player_input)
+        update_board.execute(player_input)
         ai_input = 1
-        board.execute(ai_input)
+        update_board.execute(ai_input)
         player_input = 1
-        expect(board.execute(player_input)).to eq("This is an exception")
+        expect(update_board.execute(player_input)).to eq("This is an exception")
     end
 
 end

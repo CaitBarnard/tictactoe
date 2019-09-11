@@ -1,24 +1,24 @@
 class UpdateBoard
 
-    def initialize(board)
-        @board = board
+    def initialize(gateway)
+        @gateway = gateway
         @state = true
     end
     
-    def execute(position) 
+    def execute(position)
+        @gateway.save
         
-        if @board[position-1] == ' '
+        if @gateway.get_board[position-1] == ' '
 
             if @state == true 
-                @board[position-1] = 'X'
+                @gateway.get_board[position-1] = 'X'
             else
-                @board[position-1] = 'O'
+                @gateway.get_board[position-1] = 'O'
             end
             @state = !@state
-            @board
+            @gateway.save
         else 
             return "This is an exception"
         end
-
     end
 end
