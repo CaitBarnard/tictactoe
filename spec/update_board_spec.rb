@@ -1,20 +1,7 @@
 require "update_board"
+require "gateways/board_gateway"
 
 describe UpdateBoard do
-
-    class Gateway
-        def initialize(board)
-            @board = board
-        end
-
-        def save
-            @last_saved_board = @board
-        end
-
-        def get_board
-            @last_saved_board
-        end
-    end
 
     it "Player makes moves in cell 1" do
         board = [' ',' ',' ',' ',' ',' ',' ',' ',' ']

@@ -1,6 +1,4 @@
 class UserInput
-    def initialize 
-    end 
 
     def execute 
         value = gets.chomp.to_i

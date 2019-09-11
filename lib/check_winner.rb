@@ -1,11 +1,11 @@
 class CheckWinner
     
-    def initialize(board)
-        @board = board
+    def initialize(gateway)
+        @gateway = gateway
         @score = ""
     end
 
-    def execute()
+    def execute
         win_conditions = [
             [0,1,2],
             [3,4,5],
@@ -16,12 +16,12 @@ class CheckWinner
             [0,4,8],
             [6,4,2],
         ]
-    
+        @gateway.save
         win_conditions.each do |x|
-            if @board[x[0]] == 'X' && @board[x[1]] == 'X' && @board[x[2]] == 'X'
+            if @gateway.get_board[x[0]] == 'X' && @gateway.get_board[x[1]] == 'X' && @gateway.get_board[x[2]] == 'X'
                 return @score = "Player 1 wins"
             end
-            if @board[x[0]] == 'O' && @board[x[1]] == 'O' && @board[x[2]] == 'O'
+            if @gateway.get_board[x[0]] == 'O' && @gateway.get_board[x[1]] == 'O' && @gateway.get_board[x[2]] == 'O'
                 return @score = "Player 1 loses"
             end
         end
