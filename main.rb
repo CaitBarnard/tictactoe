@@ -39,13 +39,27 @@ class Main
             puts "Enter a number from 1 to 9:"
 
             user_input
-            # check board full or not
-            if (@gateway.get_board.include?(' ')) == false 
-                return "this exits it"
+            # winning logic
+            if !@check_winner.execute.empty?
+                @print_board.execute
+                puts "Player 1 wins"
+                return "Player 1 wins"
+            end
+            # checks board is full or not
+            if (@gateway.get_board.include?(' ')) == false
+                @print_board.execute
+                puts "Game is a draw"
+                return "this is the exit"
             end
             @print_board.execute
 
             ai_input
+            # winning logic
+            if !@check_winner.execute.empty?
+                @print_board.execute
+                puts "Player 2 wins"
+                return "Player 2 wins"
+            end
             # check board full or not
 
             @print_board.execute

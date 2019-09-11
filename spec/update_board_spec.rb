@@ -38,7 +38,7 @@ describe UpdateBoard do
         ai_input = 1
         update_board.execute(ai_input)
         player_input = 1
-        expect(update_board.execute(player_input)).to eq("This is an exception")
+        expect(update_board.execute(player_input)).to eq(nil)
     end
 
 end

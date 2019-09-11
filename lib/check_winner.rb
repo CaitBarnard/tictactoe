@@ -25,7 +25,7 @@ class CheckWinner
                 return @score = "Player 1 loses"
             end
         end
-    
+        @score
     end
 end
 
