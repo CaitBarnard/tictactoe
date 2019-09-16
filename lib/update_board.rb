@@ -6,17 +6,17 @@ class UpdateBoard
     end
     
     def execute(position)
-        @gateway.save
+        board = @gateway.get_board
         
-        if @gateway.get_board[position-1] == ' '
+        if board[position-1] == ' '
 
             if @state == true 
-                @gateway.get_board[position-1] = 'X'
+                board[position-1] = 'X'
             else
-                @gateway.get_board[position-1] = 'O'
+                board[position-1] = 'O'
             end
             @state = !@state
-            @gateway.save
+            @gateway.save(board)
         else 
             return nil
             # either quit whole game, 

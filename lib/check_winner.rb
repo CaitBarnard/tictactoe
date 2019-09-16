@@ -16,12 +16,12 @@ class CheckWinner
             [0,4,8],
             [6,4,2],
         ]
-        @gateway.save
+        board = @gateway.get_board
         win_conditions.each do |x|
-            if @gateway.get_board[x[0]] == 'X' && @gateway.get_board[x[1]] == 'X' && @gateway.get_board[x[2]] == 'X'
+            if board[x[0]] == 'X' && board[x[1]] == 'X' && board[x[2]] == 'X'
                 return @score = "Player 1 wins"
             end
-            if @gateway.get_board[x[0]] == 'O' && @gateway.get_board[x[1]] == 'O' && @gateway.get_board[x[2]] == 'O'
+            if board[x[0]] == 'O' && board[x[1]] == 'O' && board[x[2]] == 'O'
                 return @score = "Player 1 loses"
             end
         end

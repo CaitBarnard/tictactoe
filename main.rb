@@ -2,15 +2,18 @@ require_relative 'lib/print_board'
 require_relative 'lib/update_board'
 require_relative 'lib/check_winner'
 require_relative 'lib/gateways/board_gateway'
+require_relative 'lib/save_board'
 
 class Main
 
     def initialize
         board = [' ',' ',' ',' ',' ',' ',' ',' ',' ']
-        @gateway = Gateway.new(board)
+        @gateway = Gateway.new
         @update_board = UpdateBoard.new(@gateway)
         @check_winner = CheckWinner.new(@gateway)
         @print_board = PrintBoard.new(@gateway)
+        @save_board = SaveBoard.new(@gateway)
+        @save_board.execute(board)
     end
 
     def user_input
@@ -34,7 +37,6 @@ class Main
     end
 
     def execute
-        @gateway.save
         while @gateway.get_board.include? ' '
             puts "Enter a number from 1 to 9:"
 
