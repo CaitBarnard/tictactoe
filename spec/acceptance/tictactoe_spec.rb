@@ -12,4 +12,15 @@ describe "tictactoe" do
         save_board = SaveBoard.new(gateway)
         expect(save_board.execute(board)).to eq(board)
     end
+
+    it "updates board with player input" do 
+        board = [' ',' ',' ',' ',' ',' ',' ',' ',' ']
+        gateway = Gateway.new
+        save_board = SaveBoard.new(gateway)
+        save_board.execute(board)
+        update_board = UpdateBoard.new(gateway)
+        expect(update_board.execute(1)).to eq(['X',' ',' ',' ',' ',' ',' ',' ',' '])
+    end
+
+
 end

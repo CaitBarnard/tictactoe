@@ -19,8 +19,6 @@ class UpdateBoard
             @gateway.save(board)
         else 
             return nil
-            # either quit whole game, 
-            #or make the player have another go
         end
     end
 end
