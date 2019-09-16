@@ -4,7 +4,7 @@ require 'check_winner'
 require 'print_board'
 require 'gateways/board_gateway'
 
-describe Game do 
+describe Game do
 
     xit "should update the board" do
         board = [' ',' ',' ',' ',' ',' ',' ',' ',' ']
@@ -13,5 +13,4 @@ describe Game do
         update_board = UpdateBoard.new(board)
         expect(update_board.execute(user_input)).to eq([' ','X',' ',' ',' ',' ',' ',' ',' '])
     end
-
 end
