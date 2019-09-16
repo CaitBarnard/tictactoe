@@ -4,7 +4,7 @@ require 'save_board'
 
 describe PrintBoard do 
 
-    xit "Prints empty board out" do 
+    it "Prints empty board out" do 
         board = [' ',' ',' ',' ',' ',' ',' ',' ',' ']
         gateway = Gateway.new
         print_board = PrintBoard.new(gateway)
@@ -14,7 +14,7 @@ describe PrintBoard do
     end
 
 
-    xit "Prints board with marks " do 
+    it "Prints board with marks " do 
         board = ['X',' ',' ',' ',' ',' ',' ',' ',' ']
         gateway = Gateway.new
         print_board = PrintBoard.new(gateway)

@@ -17,8 +17,18 @@ class UpdateBoard
             end
             @state = !@state
             @gateway.save(board)
-        else 
+        else
             return nil
         end
+    end
+
+    def check_empty_cell?(position)
+        board = @gateway.get_board
+        board[position-1] == ' '
+    end
+
+    def check_range?(position)
+        board = @gateway.get_board
+        position < 10 && position > 0
     end
 end

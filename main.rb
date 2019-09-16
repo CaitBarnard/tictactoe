@@ -21,9 +21,9 @@ class Main
     end
 
     def user_input
-        value = gets.chomp.to_i
-        if value < 10 && value > 0 && @get_board.execute[value-1] == ' '
-            @update_board.execute(value)
+        position = gets.chomp.to_i
+        if @update_board.check_range?(position) && @update_board.check_empty_cell?(position)
+            @update_board.execute(position)
         else
             @ui.invalid_input
             user_input
@@ -31,9 +31,9 @@ class Main
     end
 
     def ai_input
-        value = rand(1..9)
-        if value < 10 && value > 0 && @get_board.execute[value-1] == ' '
-            @update_board.execute(value)
+        position = rand(1..9)
+        if @update_board.check_range?(position) && @update_board.check_empty_cell?(position)
+            @update_board.execute(position)
         else
             ai_input
         end
