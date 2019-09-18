@@ -69,7 +69,7 @@ describe Minimax do
     end
 
 
-    xit "returns draw when there are only losses" do
+    it "returns draw when there are only losses" do
         available_cells = [{position: 4, children: [
             {position: 2, children: [], score: 0},
             {position: 3, children: [], score: -10}
