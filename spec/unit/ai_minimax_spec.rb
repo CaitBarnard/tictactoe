@@ -80,4 +80,15 @@ describe Minimax do
         expect(Minimax.best_move(available_cells)).to eq(1)
     end
 
+    it "returns most likely win" do
+        available_cells = [{position: 3, children: [
+            {position: 4, children: [], score: 10},
+            {position: 5, children: [], score: -10}
+        ], score: 0},
+    {position: 2, children: [
+        {position: 7, children: [], score: 10}
+    ], score: 0}]
+    expect(Minimax.best_move(available_cells)).to eq(2)
+    end
+    
 end
