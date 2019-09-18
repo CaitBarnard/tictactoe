@@ -8,27 +8,37 @@ class Minimax
         end
         
         available_cells.each do |cell|
-            if cell[:children].empty? == false 
 
+            total = 0
+            if cell[:children].empty? == false
+
+                children_total = 0
                 cell[:children].each do |childrens|
+
                     if childrens[:children].empty? == false
-                        best_score = childrens[:children].max_by {|childs|childs[:score]}[:score]
-                        best_score -= 1
-                        childrens[:score] = best_score
+                        grand_kids_total = 0
 
+                            childrens[:children].each do |grandkids|
+                                grand_kids_total += (grandkids[:score]-1) 
+                            end
 
-                        puts childrens[:score][]
+                        children_total += (childrens[:score]-1)
+                        children_total += grand_kids_total
                     end
                 end
 
-                best_score = cell[:children].max_by {|childs| childs[:score]}[:score]
-                best_score -= 1
-                cell[:score] += best_score
+                puts 'block'
+                puts cell[:score] += children_total
+                #best_score = cell[:children].max_by {|childs| childs[:score]}[:score]
+                #best_score -= 1
+                #cell[:score] += best_score
 
-
-                
             end
+            puts "cell"
+            puts cell
         end
+
+
         available_cells.max_by {|cells| cells[:score]}[:position]
     end
 end

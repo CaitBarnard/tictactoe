@@ -56,7 +56,20 @@ describe Minimax do
         expect(Minimax.best_move(available_cells)).to eq(4)
     end
 
-    it "returns draw when there are only losses" do
+    it "returns the score of the child's child" do 
+        available_cells = [{position: 4, children: [
+            {position: 2, children: [
+                {position: 5, children: [], score: 10},
+                {position: 8, children: [], score: 0}
+            ], score: 0},
+            {position: 3, children: [], score: 0}
+        ], score: 0},
+    {position: 1, children: [], score: 0}]
+        expect(Minimax.best_move(available_cells)).to eq(4)
+    end
+
+
+    xit "returns draw when there are only losses" do
         available_cells = [{position: 4, children: [
             {position: 2, children: [], score: 0},
             {position: 3, children: [], score: -10}
