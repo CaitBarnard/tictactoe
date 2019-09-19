@@ -1,6 +1,6 @@
 class Minimax
 
-    def self.best_move(available_cells)
+    def self.bests_move(available_cells)
        
         if available_cells[0].empty?
             return nil
@@ -17,7 +17,9 @@ class Minimax
                         grand_kids_total = 0
 
                             childrens[:children].each do |grandkids|
-                                grand_kids_total += (grandkids[:score]-1) 
+
+                                grand_kids_total += (grandkids[:score]-1)
+
                             end
 
                         childrens[:score] += grand_kids_total
@@ -30,4 +32,42 @@ class Minimax
 
         available_cells.max_by {|cells| cells[:score]}[:position]
     end
+
+    ############ HIGHLY DANGEROUS ZONE ############
+
+    def self.recursion(cell, total)
+        puts "THE FIRST CELL:"
+        puts cell
+        if cell[:children].empty?
+            puts "score"
+            puts cell[:score]
+            return cell[:score]
+        else
+            puts "total:"
+            puts total
+            cell[:children].each do |child|
+                total += recursion(child, total)
+                total -= 1
+            end
+           # total += recursion(cell[:children][0], total)
+
+            total
+        end
+    end
+
+    def self.best_move(available_cells)
+       
+        if available_cells[0].empty?
+            return nil
+        end
+        
+        available_cells.each do |cell|
+            #cell_score = cell[:score]
+
+            cell[:score] += self.recursion(cell, cell[:score])
+        end
+
+        available_cells.max_by {|cells| cells[:score]}[:position]
+    end
+
 end

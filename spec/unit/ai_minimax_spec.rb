@@ -107,5 +107,16 @@ describe Minimax do
                                                             [{position: 2, children: [], score:10}], score: 0}], score: 0}]
     expect(Minimax.best_move(available_cells)).to eq(8)
     end
+
+    it "returns the quickest win" do 
+        available_cells = [{position: 2, children: 
+                                        [{position: 3, children: 
+                                                        [{position: 6, children: [], score: 10}], score: 0},
+                                         {position: 6, children: [], score: 0}], score: 0},
+                           {position: 3, children: 
+                                        [{position: 7, children: [], score: 10}], score: 0}]
+
+        expect(Minimax.best_move(available_cells)).to eq(3)
+    end
     
 end
