@@ -15,21 +15,19 @@ class Minimax
                     if childrens[:children].empty? == false
 
                         grand_kids_total = 0
-                        
+
                             childrens[:children].each do |grandkids|
                                 grand_kids_total += (grandkids[:score]-1) 
                             end
 
                         childrens[:score] += grand_kids_total
                     end
-
                     childrens[:score] -= 1
                     cell[:score]+=childrens[:score]
                 end
-
             end
-            puts cell[:score]
         end
+
         available_cells.max_by {|cells| cells[:score]}[:position]
     end
 end

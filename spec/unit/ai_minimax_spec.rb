@@ -90,5 +90,22 @@ describe Minimax do
     ], score: 0}]
     expect(Minimax.best_move(available_cells)).to eq(2)
     end
+
+    it "returns most likely win" do
+        available_cells = [{position: 2, children: 
+                                        [{position: 3, children: 
+                                                        [{position: 8, children: [], score: 10}], score: 0},
+                                         {position: 8, children: [], score: -10}], score: 0},
+                           {position: 3, children: 
+                           [{position: 2, children: 
+                                                [{position: 8, children: [], score: 0}], score: 0},
+                           {position: 8, children: [], score: -10}], score: 0},
+                           {position: 8, children:
+                                         [{position: 2, children: 
+                                                            [{position: 3, children: [], score: 0}], score: 0},
+                                          {position: 3, children:
+                                                            [{position: 2, children: [], score:10}], score: 0}], score: 0}]
+    expect(Minimax.best_move(available_cells)).to eq(8)
+    end
     
 end
