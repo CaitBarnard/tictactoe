@@ -4,6 +4,8 @@ require_relative 'lib/check_winner'
 require_relative 'lib/gateways/board_gateway'
 require_relative 'lib/save_board'
 require_relative 'lib/get_board'
+require_relative 'lib/kat_trees'
+require_relative 'lib/ai_minimax'
 require_relative 'lib/ui'
 
 class Main
@@ -31,12 +33,11 @@ class Main
     end
 
     def ai_input
-        position = rand(1..9)
-        if @update_board.check_range?(position) && @update_board.check_empty_cell?(position)
-            @update_board.execute(position)
-        else
-            ai_input
-        end
+        board = @get_board.execute
+        tree = Tree.to_tree(board, true)
+          
+        position = Minimax.best_move(tree)
+        @update_board.execute(position)
     end
 
     def execute
@@ -56,7 +57,7 @@ class Main
                 return
             end
             @print_board.execute
-
+            #puts Tree.to_tree(@get_board.execute, false)
             ai_input
             # winning logic
             if !@check_winner.execute.empty?
@@ -75,3 +76,4 @@ end
 
 game = Main.new
 game.execute
+

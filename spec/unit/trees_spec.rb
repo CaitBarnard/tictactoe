@@ -30,12 +30,4 @@ describe 'trees' do
             {position: 7, children: [{position: 6, children: [], score: 0}], score: 0}])
     end
 
-    it "generates tree when a child is a win" do
-        board = ['X','O','X',' ','O',' ','O','X','X']
-        tree = Trees.new(board)
-        expect(tree.generate).to eq(
-            [{position: 4, children: [{position: 6, children: [], score: 10}], score: 0},
-            {position: 6, children: [{position: 4, children: [], score: 0}], score: 0}]) 
-    end
-
 end
