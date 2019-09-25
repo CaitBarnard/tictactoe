@@ -13,7 +13,7 @@ class UI
     end
     
     def ai_wins
-        puts "YOU LOSE"
+        puts "AI wins!"
     end
 
     def draw

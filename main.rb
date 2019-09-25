@@ -34,8 +34,7 @@ class Main
 
     def ai_input
         board = @get_board.execute
-        tree = Tree.to_tree(board, true)
-          
+        tree = Tree.to_tree(board, false)
         position = Minimax.best_move(tree)
         @update_board.execute(position)
     end
@@ -45,19 +44,21 @@ class Main
             @ui.enter_number
 
             user_input
-            # winning logic
+
             if !@check_winner.execute.empty?
                 @print_board.execute
                 @ui.player_wins
                 return
             end
-            # checks board is full or not
+
             if (@get_board.execute.include?(' ')) == false
                 @print_board.execute
+                @ui.draw
                 return
             end
+
             @print_board.execute
-            #puts Tree.to_tree(@get_board.execute, false)
+
             ai_input
             # winning logic
             if !@check_winner.execute.empty?
@@ -65,10 +66,8 @@ class Main
                 @ui.ai_wins
                 return
             end
-            # check board full or not
 
             @print_board.execute
-            #check win
         end
     end
 
@@ -77,3 +76,16 @@ end
 game = Main.new
 game.execute
 
+
+# Known failures
+# ['X', 'O', 'X', ' ', 'O', ' ', 'O', 'X', 'X']
+# chooses 4 over 6, giving player a win
+
+# [' ','X',' ','X','O','X','O','O','X']
+# Chooses 1 over 3, avoiding a win and gives player a win
+
+# [' ','X',' ',' ','X','X',' ','O','O']
+# Chooses 4 over 7, avoiding a win and blocking player
+
+
+# Changed line 37 to false

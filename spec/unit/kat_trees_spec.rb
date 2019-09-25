@@ -19,7 +19,7 @@ describe Tree do
                                                                                       {position: 8, children: [], score: 10}])
       end
       it "can check a win" do
-        expect(Tree.is_win?(["O", "X", "X", "O", "O", "X", "O", " ", "O"])).to eq(true)
+        expect(Tree.is_win?(['O', 'X', 'X', 'O', 'O', 'X', 'O',' ', 'O'])).to eq(true)
       end
     it "returns a more complex table" do
       tree = [
@@ -45,8 +45,5 @@ describe Tree do
 
       expect(Tree.to_tree(['O','O','X',' ','X','O',' ','X','X'], false)).to eq(tree)
     end
-
- 
-
 
    end
