@@ -6,6 +6,7 @@ require_relative 'lib/save_board'
 require_relative 'lib/get_board'
 require_relative 'lib/kat_trees'
 require_relative 'lib/ai_minimax'
+require_relative 'lib/minimax_2'
 require_relative 'lib/ui'
 
 class Main
@@ -35,7 +36,7 @@ class Main
     def ai_input
         board = @get_board.execute
         tree = Tree.to_tree(board, false)
-        position = Minimax.best_move(tree)
+        position = MinMax.best_move(tree)
         @update_board.execute(position)
     end
 

@@ -5,17 +5,9 @@ class Tree
         next_child = []
         if position == ' '
           temp_board = board.dup
-          if player == true
-            temp_board[i] = 'X'
-          else
-            temp_board[i] = 'O'
-          end
+          player ? temp_board[i] = 'X' : temp_board[i] = 'O'
           if is_win?(temp_board)
-            if player == true
-              score = -10
-            else
-              score = 10
-            end
+            player ? score = -10 : score = 10
           else
             next_child = to_tree(temp_board, !player)
             score = 0
@@ -39,7 +31,4 @@ class Tree
 
     #print Tree.to_tree(['X',' ','O',' ','O',' ','X',' ','X'], false)
     #pp Tree.to_tree(['O',' ',' ','X','O',' ','X',' ','X'], false)
-    #pp Tree.to_tree(['X',' ','O','X','X','O','O',' ',' '], false)
-
-
-    
+    #pp Tree.to_tree(['X',' ','O','X','X','O','O',' ',' '], true)    

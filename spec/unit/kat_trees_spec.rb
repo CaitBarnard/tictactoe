@@ -1,6 +1,7 @@
 require 'kat_trees'
 
 describe Tree do
+
     it "returns an empty array if the board is full" do
       expect(Tree.to_tree(['X', 'O', 'X', 'O', 'X', 'O', 'O', 'O', 'X'], false)).to eq([])
     end
